@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_weight="1"
+            android:gravity="top|center_horizontal"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.GoalCardView
+                    android:id="@+id/goal_pile1"
+                    style="@style/goal_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <TextView
+                    android:id="@+id/goal1_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.GoalCardView
+                    android:id="@+id/goal_pile2"
+                    style="@style/goal_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <TextView
+                    android:id="@+id/goal2_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.GoalCardView
+                    android:id="@+id/goal_pile3"
+                    style="@style/goal_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <TextView
+                    android:id="@+id/goal3_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.GoalCardView
+                    android:id="@+id/goal_pile4"
+                    style="@style/goal_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <TextView
+                    android:id="@+id/goal4_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.GoalCardView
+                    android:id="@+id/goal_pile5"
+                    style="@style/goal_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <TextView
+                    android:id="@+id/goal5_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.GoalCardView
+                    android:id="@+id/goal_pile6"
+                    style="@style/goal_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <TextView
+                    android:id="@+id/goal6_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="6" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.oakonell.triplica.ui.SolitairePlayCardLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/deck_holder"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/deck"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/deck_new_card"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="@dimen/card_width"
+                android:layout_height="0dp" />
+
+            <com.oakonell.triplica.ui.PlayCardView
+                android:id="@+id/pile1"
+                style="@style/play_card"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" />
+
+            <com.oakonell.triplica.ui.PlayCardView
+                android:id="@+id/pile2"
+                style="@style/play_card"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" />
+
+            <com.oakonell.triplica.ui.PlayCardView
+                android:id="@+id/pile3"
+                style="@style/play_card"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" />
+
+            <com.oakonell.triplica.ui.PlayCardView
+                android:id="@+id/pile4"
+                style="@style/play_card"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" />
+        </com.oakonell.triplica.ui.SolitairePlayCardLinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/anim_shape1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/anim_shape2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/anim_shape3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+</RelativeLayout>
