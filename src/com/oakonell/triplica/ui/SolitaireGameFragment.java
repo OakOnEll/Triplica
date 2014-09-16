@@ -40,6 +40,7 @@ public class SolitaireGameFragment extends Fragment {
 	private PlayCardView[] playCardViews;
 	private PlayCardView deck;
 	private List<ImageView> shapeViewsToAnimate;
+	private TextView goalViewToAnimate;
 
 	class GoalViews {
 		GoalCardView cardView;
@@ -141,6 +142,9 @@ public class SolitaireGameFragment extends Fragment {
 		shapeViewsToAnimate.add(shape1);
 		shapeViewsToAnimate.add(shape2);
 		shapeViewsToAnimate.add(shape3);
+
+		goalViewToAnimate = (TextView) rootView
+				.findViewById(R.id.anim_goal_remaining);
 
 		updatePlayCards();
 
@@ -351,6 +355,21 @@ public class SolitaireGameFragment extends Fragment {
 
 	protected void animateRemainingTarget(final TextView targetRemainingView,
 			final Runnable continuation) {
+		final TextView toAnimate = goalViewToAnimate;
+		int left = getLeftRelativeTo(targetRemainingView, getView());
+		int top = getTopRelativeTo(targetRemainingView, getView());
+
+		RelativeLayout.LayoutParams toAnimateParams = (android.widget.RelativeLayout.LayoutParams) toAnimate
+				.getLayoutParams();
+		toAnimateParams.leftMargin = left;
+		toAnimateParams.topMargin = top;
+		toAnimateParams.width = targetRemainingView.getWidth();
+		toAnimateParams.height = targetRemainingView.getHeight();
+		toAnimate.setLayoutParams(toAnimateParams);
+		toAnimate.setText(targetRemainingView.getText());
+		toAnimate.setVisibility(View.VISIBLE);
+		toAnimate.invalidate();
+
 		final int remaining = Integer.parseInt(targetRemainingView.getText()
 				.toString());
 
@@ -371,12 +390,15 @@ public class SolitaireGameFragment extends Fragment {
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
+				// update the view for now, the model will update after all
+				// triplicas are scored
+				toAnimate.setVisibility(View.GONE);
 				targetRemainingView.setText("" + (remaining - 1));
 				continuation.run();
 			}
 		});
 
-		targetRemainingView.startAnimation(scale);
+		toAnimate.startAnimation(scale);
 	}
 
 	private Animation createTriplicaShapeAnimation(ImageView toAnimate,

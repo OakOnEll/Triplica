@@ -42,7 +42,8 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090001;
-        public static final int action_settings=0x7f09001f;
+        public static final int action_settings=0x7f090020;
+        public static final int anim_goal_remaining=0x7f09001f;
         public static final int anim_shape1=0x7f09001c;
         public static final int anim_shape2=0x7f09001d;
         public static final int anim_shape3=0x7f09001e;

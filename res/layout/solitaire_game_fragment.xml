@@ -227,4 +227,12 @@
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/anim_goal_remaining"
+        style="@style/goal_remain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6"
+        android:visibility="gone" />
+
 </RelativeLayout>
