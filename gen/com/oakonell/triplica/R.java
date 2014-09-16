@@ -36,8 +36,9 @@ public final class R {
         public static final int placed_card_outline=0x7f020006;
         public static final int play_card_back=0x7f020007;
         public static final int rectangle=0x7f020008;
-        public static final int star=0x7f020009;
-        public static final int x=0x7f02000a;
+        public static final int remain_oval=0x7f020009;
+        public static final int star=0x7f02000a;
+        public static final int x=0x7f02000b;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090001;
