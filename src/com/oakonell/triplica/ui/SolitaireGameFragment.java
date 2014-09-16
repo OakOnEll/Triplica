@@ -296,7 +296,7 @@ public class SolitaireGameFragment extends Fragment {
 		Shape shape = game.getPlayPile(triplica.startStackNum).getTopCard()
 				.get(triplica.startPosition);
 		GoalViews goalViews = goalCardViews.get(shape);
-		TextView targetRemainingView = goalViews.remainingView;
+		final TextView targetRemainingView = goalViews.remainingView;
 
 		// prepare the copy of the shapes over the existing shapes
 		List<Animation> animations = new ArrayList<Animation>();
@@ -334,7 +334,8 @@ public class SolitaireGameFragment extends Fragment {
 						for (View each : shapeViewsToAnimate) {
 							each.setVisibility(View.GONE);
 						}
-						continuation.run();
+						animateRemainingTarget(targetRemainingView,
+								continuation);
 					}
 				});
 			}
@@ -346,6 +347,36 @@ public class SolitaireGameFragment extends Fragment {
 			toAnimate.startAnimation(anim);
 		}
 
+	}
+
+	protected void animateRemainingTarget(final TextView targetRemainingView,
+			final Runnable continuation) {
+		final int remaining = Integer.parseInt(targetRemainingView.getText()
+				.toString());
+
+		ScaleAnimation scale = new ScaleAnimation(1, 2, 1, 2,
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
+		scale.setDuration(500);
+		scale.setAnimationListener(new AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				targetRemainingView.setText("" + (remaining - 1));
+				continuation.run();
+			}
+		});
+
+		targetRemainingView.startAnimation(scale);
 	}
 
 	private Animation createTriplicaShapeAnimation(ImageView toAnimate,
@@ -360,19 +391,25 @@ public class SolitaireGameFragment extends Fragment {
 		set.addAnimation(scale);
 
 		// then shrink and move to remaining number text view
-		ScaleAnimation shrink = new ScaleAnimation(1, 0, 1, 0,
+		ScaleAnimation shrink = new ScaleAnimation(1, 0.1f, 1, 0.1f,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
 		shrink.setStartOffset(500);
-		shrink.setDuration(800);
+		shrink.setDuration(750);
 		set.addAnimation(shrink);
 
 		int xDelta = getLeftRelativeTo(targetRemainingView, getView())
 				- getLeftRelativeTo(toAnimate, getView());
 		int yDelta = getTopRelativeTo(targetRemainingView, getView())
 				- getTopRelativeTo(toAnimate, getView());
+
+		xDelta -= toAnimate.getWidth() / 2 - targetRemainingView.getWidth() / 2;
+		yDelta -= toAnimate.getHeight() / 2 - targetRemainingView.getHeight()
+				/ 2;
+
 		TranslateAnimation translate = new TranslateAnimation(0, xDelta, 0,
 				yDelta);
+
 		translate.setStartOffset(500);
 		translate.setDuration(800);
 		set.addAnimation(translate);

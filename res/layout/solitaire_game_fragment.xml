@@ -16,12 +16,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|center_horizontal"
             android:layout_weight="1"
+            android:clipChildren="false"
             android:gravity="top|center_horizontal"
             android:orientation="horizontal" >
 
             <RelativeLayout
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height" >
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.GoalCardView
                     android:id="@+id/goal_pile1"
@@ -31,6 +33,7 @@
 
                 <TextView
                     android:id="@+id/goal1_remaining"
+                    style="@style/goal_remain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -40,7 +43,8 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height" >
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.GoalCardView
                     android:id="@+id/goal_pile2"
@@ -50,6 +54,7 @@
 
                 <TextView
                     android:id="@+id/goal2_remaining"
+                    style="@style/goal_remain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -59,7 +64,8 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height" >
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.GoalCardView
                     android:id="@+id/goal_pile3"
@@ -69,6 +75,7 @@
 
                 <TextView
                     android:id="@+id/goal3_remaining"
+                    style="@style/goal_remain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -78,7 +85,8 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height" >
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.GoalCardView
                     android:id="@+id/goal_pile4"
@@ -88,6 +96,7 @@
 
                 <TextView
                     android:id="@+id/goal4_remaining"
+                    style="@style/goal_remain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -97,7 +106,8 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height" >
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.GoalCardView
                     android:id="@+id/goal_pile5"
@@ -107,6 +117,7 @@
 
                 <TextView
                     android:id="@+id/goal5_remaining"
+                    style="@style/goal_remain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -116,7 +127,8 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height" >
+                android:layout_height="@dimen/card_height"
+                android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.GoalCardView
                     android:id="@+id/goal_pile6"
@@ -126,6 +138,7 @@
 
                 <TextView
                     android:id="@+id/goal6_remaining"
+                    style="@style/goal_remain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
