@@ -26,6 +26,10 @@ public class PlayDeck {
 				}
 			}
 		}
+		// TODO for testing
+//		for (int i = 0; i < 53; i++) {
+//			removeTopCard();
+//		}
 	}
 
 	public void shuffle() {
@@ -44,6 +48,8 @@ public class PlayDeck {
 	}
 
 	public PlayCard removeTopCard() {
+		if (cards.isEmpty())
+			return null;
 		return cards.remove(cards.size() - 1);
 	}
 
@@ -52,6 +58,8 @@ public class PlayDeck {
 	}
 
 	public PlayCard getTopCard() {
+		if (cards.isEmpty())
+			return null;
 		return cards.get(cards.size() - 1);
 	}
 

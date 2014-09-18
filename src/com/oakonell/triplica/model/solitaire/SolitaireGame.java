@@ -153,4 +153,8 @@ public class SolitaireGame {
 		status.state = GameState.TURN_IN_PROGRESS;
 	}
 
+	public PlayDeck getDeck() {
+		return playDeck;
+	}
+
 }

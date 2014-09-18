@@ -163,6 +163,12 @@
                 android:clipChildren="false" >
 
                 <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/deck_background"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height" />
+
+                <com.oakonell.triplica.ui.PlayCardView
                     android:id="@+id/deck"
                     style="@style/play_card"
                     android:layout_width="@dimen/card_width"

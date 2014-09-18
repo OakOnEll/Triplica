@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.easyandroidanimations.library.FlipHorizontalToAnimation;
 import com.oakonell.triplica.R;
 import com.oakonell.triplica.model.GoalCard;
 import com.oakonell.triplica.model.PlayCard;
@@ -41,6 +43,7 @@ public class SolitaireGameFragment extends Fragment {
 	private PlayCardView deck;
 	private List<ImageView> shapeViewsToAnimate;
 	private TextView goalViewToAnimate;
+	private PlayCardView deck_background;
 
 	class GoalViews {
 		GoalCardView cardView;
@@ -78,7 +81,10 @@ public class SolitaireGameFragment extends Fragment {
 		playDeckView.showBack(true);
 		game.setupBoard();
 		deck = (PlayCardView) rootView.findViewById(R.id.deck);
+		deck_background = (PlayCardView) rootView
+				.findViewById(R.id.deck_background);
 		deck.showBack(true);
+		deck_background.showBack(true);
 
 		playDeckView.bringToFront();
 		// rootView.findViewById(R.id.deck_holder).bringToFront();
@@ -118,8 +124,27 @@ public class SolitaireGameFragment extends Fragment {
 				game.endTurn();
 
 				PlayCard deckCard = game.getDeckCard();
-				playDeckView.showBack(false);
+				if (game.getDeck().isEmpty()) {
+					deck_background.setVisibility(View.INVISIBLE);
+				}
 				playDeckView.setPlayCard(deckCard);
+				// playDeckView.setVisibility(View.INVISIBLE);
+				playDeckView.showBack(false);
+				new FlipHorizontalToAnimation(deck).setFlipToView(playDeckView)
+						.setInterpolator(new LinearInterpolator())
+						// .setDuration(1000)
+						// .setListener(new
+						// com.easyandroidanimations.library.AnimationListener()
+						// {
+						//
+						// @Override
+						// public void onAnimationEnd(
+						// com.easyandroidanimations.library.Animation
+						// animation) {
+						//
+						// }
+						// })
+						.animate();
 
 			}
 		});
@@ -215,6 +240,16 @@ public class SolitaireGameFragment extends Fragment {
 									.getTopCard());
 							playCardView.setSelected(true);
 							playDeckView.showBack(true);
+							if (!game.getDeck().isEmpty()) {
+								deck.setVisibility(View.VISIBLE);
+							} else {
+								playDeckView.setVisibility(View.INVISIBLE);
+								deck_background.setVisibility(View.INVISIBLE);
+								deck.setVisibility(View.INVISIBLE);
+							}
+							if (game.getDeck().getCards().size() == 1) {
+								deck_background.setVisibility(View.INVISIBLE);
+							}
 						}
 					});
 					playDeckView.startAnimation(anim);
