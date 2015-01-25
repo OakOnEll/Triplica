@@ -147,7 +147,8 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <com.oakonell.triplica.ui.SolitairePlayCardLinearLayout
+        <com.oakonell.triplica.ui.solitaire.SolitairePlayCardLinearLayout
+            android:id="@+id/cards_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
@@ -185,34 +186,94 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="0dp" />
 
-            <com.oakonell.triplica.ui.PlayCardView
-                android:id="@+id/pile1"
+            <RelativeLayout
                 style="@style/play_card"
+                android:clipChildren="false"
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height"
-                android:clipChildren="false" />
+                android:layout_height="@dimen/card_height" >
 
-            <com.oakonell.triplica.ui.PlayCardView
-                android:id="@+id/pile2"
-                style="@style/play_card"
-                android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height"
-                android:clipChildren="false" />
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/under_pile1"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false"
+                    android:visibility="gone" />
 
-            <com.oakonell.triplica.ui.PlayCardView
-                android:id="@+id/pile3"
-                style="@style/play_card"
-                android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height"
-                android:clipChildren="false" />
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/pile1"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false" />
+            </RelativeLayout>
 
-            <com.oakonell.triplica.ui.PlayCardView
-                android:id="@+id/pile4"
+            <RelativeLayout
                 style="@style/play_card"
+                android:clipChildren="false"
                 android:layout_width="@dimen/card_width"
-                android:layout_height="@dimen/card_height"
-                android:clipChildren="false" />
-        </com.oakonell.triplica.ui.SolitairePlayCardLinearLayout>
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/under_pile2"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false"
+                    android:visibility="gone" />
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/pile2"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/play_card"
+                android:clipChildren="false"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/under_pile3"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false"
+                    android:visibility="gone" />
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/pile3"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/play_card"
+                android:clipChildren="false"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height" >
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/under_pile4"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false"
+                    android:visibility="gone" />
+
+                <com.oakonell.triplica.ui.PlayCardView
+                    android:id="@+id/pile4"
+                    style="@style/play_card"
+                    android:layout_width="@dimen/card_width"
+                    android:layout_height="@dimen/card_height"
+                    android:clipChildren="false" />
+            </RelativeLayout>
+        </com.oakonell.triplica.ui.solitaire.SolitairePlayCardLinearLayout>
     </LinearLayout>
 
     <ImageView

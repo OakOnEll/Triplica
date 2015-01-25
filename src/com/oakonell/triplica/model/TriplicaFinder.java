@@ -16,8 +16,9 @@ public class TriplicaFinder {
 			int stackInPlay) {
 
 		Set<Triplica> result = new HashSet<Triplica>();
-		if (Math.abs(stackNum - stackInPlay) > 2)
+		if (Math.abs(stackNum - stackInPlay) > 2) {
 			return result;
+		}
 
 		switch (position) {
 		case TOP:

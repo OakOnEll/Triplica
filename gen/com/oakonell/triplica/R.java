@@ -42,18 +42,19 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090001;
-        public static final int action_settings=0x7f090021;
-        public static final int anim_goal_remaining=0x7f090020;
-        public static final int anim_shape1=0x7f09001d;
-        public static final int anim_shape2=0x7f09001e;
-        public static final int anim_shape3=0x7f09001f;
+        public static final int action_settings=0x7f090026;
+        public static final int anim_goal_remaining=0x7f090025;
+        public static final int anim_shape1=0x7f090022;
+        public static final int anim_shape2=0x7f090023;
+        public static final int anim_shape3=0x7f090024;
         public static final int back=0x7f090004;
         public static final int bottom=0x7f090008;
+        public static final int cards_layout=0x7f090015;
         public static final int container=0x7f090000;
-        public static final int deck=0x7f090017;
-        public static final int deck_background=0x7f090016;
-        public static final int deck_holder=0x7f090015;
-        public static final int deck_new_card=0x7f090018;
+        public static final int deck=0x7f090018;
+        public static final int deck_background=0x7f090017;
+        public static final int deck_holder=0x7f090016;
+        public static final int deck_new_card=0x7f090019;
         public static final int front=0x7f090005;
         public static final int goal1_remaining=0x7f09000a;
         public static final int goal2_remaining=0x7f09000c;
@@ -68,13 +69,17 @@ public final class R {
         public static final int goal_pile5=0x7f090011;
         public static final int goal_pile6=0x7f090013;
         public static final int middle=0x7f090007;
-        public static final int pile1=0x7f090019;
-        public static final int pile2=0x7f09001a;
-        public static final int pile3=0x7f09001b;
-        public static final int pile4=0x7f09001c;
+        public static final int pile1=0x7f09001b;
+        public static final int pile2=0x7f09001d;
+        public static final int pile3=0x7f09001f;
+        public static final int pile4=0x7f090021;
         public static final int shape=0x7f090003;
         public static final int start=0x7f090002;
         public static final int top=0x7f090006;
+        public static final int under_pile1=0x7f09001a;
+        public static final int under_pile2=0x7f09001c;
+        public static final int under_pile3=0x7f09001e;
+        public static final int under_pile4=0x7f090020;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

@@ -13,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.oakonell.triplica.ui.SolitaireGameFragment;
+import com.oakonell.triplica.ui.solitaire.SolitaireGameFragment;
 
 public class MainActivity extends Activity {
 

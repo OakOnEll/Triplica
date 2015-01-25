@@ -26,16 +26,17 @@ public class PlayDeck {
 				}
 			}
 		}
-		// TODO for testing
-//		for (int i = 0; i < 53; i++) {
-//			removeTopCard();
-//		}
 	}
 
 	public void shuffle() {
-		Collections.shuffle(cards);
-		// randomly flip cards as well
 		Random rand = new Random();
+		shuffle(rand);
+	}
+
+	/** for testing */
+	public void shuffle(Random rand) {
+		Collections.shuffle(cards, rand);
+		// randomly flip cards as well
 		for (PlayCard each : cards) {
 			if (rand.nextBoolean()) {
 				each.flip();

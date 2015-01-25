@@ -13,7 +13,25 @@ public class PlayCardPile {
 		return cards.get(cards.size() - 1);
 	}
 
+	public boolean isEmpty() {
+		return cards.isEmpty();
+	}
+
 	public void add(PlayCard card) {
 		cards.add(card);
+	}
+
+	public PlayCard removeTopCard() {
+		if (cards.isEmpty())
+			return null;
+		return cards.remove(cards.size() - 1);
+	}
+
+	public PlayCard getNextCard() {
+		if (cards.size() < 2) {
+			return null;
+		}
+		return cards.get(cards.size() - 2);
+
 	}
 }
