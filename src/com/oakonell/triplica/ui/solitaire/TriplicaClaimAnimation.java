@@ -3,6 +3,8 @@ package com.oakonell.triplica.ui.solitaire;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Color;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -23,17 +25,19 @@ import com.oakonell.triplica.ui.solitaire.SolitaireGameFragment.ViewHolder;
 public class TriplicaClaimAnimation {
 	private ViewHolder views;
 	private View view;
-	
+
 	private SolitaireGame game;
 
-	public TriplicaClaimAnimation(View view, ViewHolder holder, SolitaireGame game) {
+	public TriplicaClaimAnimation(View view, ViewHolder holder,
+			SolitaireGame game) {
 		this.view = view;
 		this.game = game;
 		this.views = holder;
 	}
 
 	protected void animateTriplicas(final Runnable continuation) {
-		List<Triplica> triplicas = new ArrayList<Triplica>(game.getPendingTriplicas());
+		List<Triplica> triplicas = new ArrayList<Triplica>(
+				game.getPendingTriplicas());
 		animateTriplicas(triplicas, continuation);
 	}
 
@@ -57,20 +61,8 @@ public class TriplicaClaimAnimation {
 	private void animateTriplica(final Triplica triplica,
 			final Runnable continuation) {
 
-		List<ImageView> triplicaShapeViews = new ArrayList<ImageView>();
-		triplicaShapeViews.add(views.playCardViews[triplica.startStackNum]
-				.getShape(triplica.startPosition));
-		ImageView middleView;
-		if (triplica.startPosition == triplica.endPosition) {
-			middleView = views.playCardViews[triplica.startStackNum + 1]
-					.getShape(triplica.startPosition);
-		} else {
-			middleView = views.playCardViews[triplica.startStackNum + 1]
-					.getShape(Position.MIDDLE);
-		}
-		triplicaShapeViews.add(middleView);
-		triplicaShapeViews.add(views.playCardViews[triplica.endStackNum]
-				.getShape(triplica.endPosition));
+		List<ImageView> triplicaShapeViews = getTriplicaShapeViews(triplica,
+				views);
 
 		Shape shape = game.getPlayPile(triplica.startStackNum).getTopCard()
 				.get(triplica.startPosition);
@@ -81,6 +73,7 @@ public class TriplicaClaimAnimation {
 		List<Animation> animations = new ArrayList<Animation>();
 		for (int i = 0; i < 3; i++) {
 			ImageView original = triplicaShapeViews.get(i);
+			original.setBackgroundColor(Color.TRANSPARENT);
 			ImageView toAnimate = views.shapeViewsToAnimate.get(i);
 			int left = getLeftRelativeTo(original, view);
 			int top = getTopRelativeTo(original, view);
@@ -126,6 +119,25 @@ public class TriplicaClaimAnimation {
 			toAnimate.startAnimation(anim);
 		}
 
+	}
+
+	public static List<ImageView> getTriplicaShapeViews(
+			final Triplica triplica, ViewHolder views) {
+		List<ImageView> triplicaShapeViews = new ArrayList<ImageView>();
+		triplicaShapeViews.add(views.playCardViews[triplica.startStackNum]
+				.getShape(triplica.startPosition));
+		ImageView middleView;
+		if (triplica.startPosition == triplica.endPosition) {
+			middleView = views.playCardViews[triplica.startStackNum + 1]
+					.getShape(triplica.startPosition);
+		} else {
+			middleView = views.playCardViews[triplica.startStackNum + 1]
+					.getShape(Position.MIDDLE);
+		}
+		triplicaShapeViews.add(middleView);
+		triplicaShapeViews.add(views.playCardViews[triplica.endStackNum]
+				.getShape(triplica.endPosition));
+		return triplicaShapeViews;
 	}
 
 	private void animateRemainingTarget(final TextView targetRemainingView,

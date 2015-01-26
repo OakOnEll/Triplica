@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,7 +150,7 @@ public class SolitaireGameFragment extends Fragment {
 						new FlipHorizontalToAnimation(views.deck)
 								.setFlipToView(views.playDeckView)
 								.setInterpolator(new LinearInterpolator())
-								// .setDuration(1000)
+								.setDuration(700)
 								// .setListener(new
 								// com.easyandroidanimations.library.AnimationListener()
 								// {
@@ -177,6 +178,11 @@ public class SolitaireGameFragment extends Fragment {
 							}
 						});
 
+					}
+
+					@Override
+					public void cancelDrag() {
+						// Nothing to do
 					}
 
 				});
@@ -284,6 +290,13 @@ public class SolitaireGameFragment extends Fragment {
 			public void onClickFront(View view, Position position) {
 				Set<Triplica> triplicas = game.markTriplicas(i, position);
 				// TODO animate/highlight claimed triplica
+				for (Triplica each : triplicas) {
+					List<ImageView> triplicaShapeViews = TriplicaClaimAnimation
+							.getTriplicaShapeViews(each, views);
+					for (ImageView eachView : triplicaShapeViews) {
+						eachView.setBackgroundColor(Color.GREEN);
+					}
+				}
 			}
 
 			@Override
@@ -291,6 +304,15 @@ public class SolitaireGameFragment extends Fragment {
 				// display the card underneath
 				underPile.setPlayCard(game.getPlayPile(i).getNextCard());
 				underPile.setVisibility(View.VISIBLE);
+
+				for (Triplica each : game.getPendingTriplicas()) {
+					List<ImageView> triplicaShapeViews = TriplicaClaimAnimation
+							.getTriplicaShapeViews(each, views);
+					for (ImageView eachView : triplicaShapeViews) {
+						eachView.setBackgroundColor(Color.TRANSPARENT);
+					}
+				}
+
 			}
 
 			@Override
@@ -306,8 +328,13 @@ public class SolitaireGameFragment extends Fragment {
 
 			@Override
 			public void droppedOn(PlayCardView theSelected, int theSelectIndex) {
-				views.cards_layout.setIndexOnTop(theSelectIndex + 2);
-				views.cards_layout.invalidate();
+				for (Triplica each : game.getPendingTriplicas()) {
+					List<ImageView> triplicaShapeViews = TriplicaClaimAnimation
+							.getTriplicaShapeViews(each, views);
+					for (ImageView eachView : triplicaShapeViews) {
+						eachView.setBackgroundColor(Color.TRANSPARENT);
+					}
+				}
 
 				playCardView.setDraggable(false);
 				theSelected.setDraggable(true);
@@ -318,6 +345,22 @@ public class SolitaireGameFragment extends Fragment {
 				theSelected.setSelected(true);
 				playCardView.setPlayCard(game.getPlayPile(i).getTopCard());
 				playCardView.setSelected(false);
+
+				views.cards_layout.setIndexOnTop(theSelectIndex + 2);
+				views.cards_layout.invalidate();
+			}
+
+			@Override
+			public void cancelDrag() {
+				for (Triplica each : game.getPendingTriplicas()) {
+					List<ImageView> triplicaShapeViews = TriplicaClaimAnimation
+							.getTriplicaShapeViews(each, views);
+					for (ImageView eachView : triplicaShapeViews) {
+						eachView.setBackgroundColor(Color.GREEN);
+					}
+				}
+
+				views.cards_layout.invalidate();
 			}
 		});
 	}

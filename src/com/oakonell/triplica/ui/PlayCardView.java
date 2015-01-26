@@ -223,6 +223,12 @@ public class PlayCardView extends CardView {
 						public void onAnimationEnd(Animation animation) {
 							setX(originalX);
 							setY(originalY);
+							// handler.postDelayed(new Runnable() {
+							// @Override
+							// public void run() {
+							listener.cancelDrag();
+							// }
+							// }, 5);
 						}
 					});
 					startAnimation(anim);
@@ -251,10 +257,14 @@ public class PlayCardView extends CardView {
 
 					@Override
 					public void onAnimationEnd(Animation animation) {
-						listener.droppedOn(theSelected, theIndex);
-
 						setX(originalX);
 						setY(originalY);
+						// handler.postDelayed(new Runnable() {
+						// @Override
+						// public void run() {
+						listener.droppedOn(theSelected, theIndex);
+						// }
+						// }, 5);
 					}
 				});
 				startAnimation(anim);
@@ -310,26 +320,30 @@ public class PlayCardView extends CardView {
 	}
 
 	private void handleClick(Vector2D pointInCard) {
+		if (listener == null)
+			return;
+
 		if (front.getVisibility() != View.VISIBLE) {
 			// clicked the back
 			listener.onClickBack(PlayCardView.this);
 			return;
 		}
-		
+
 		float yTouch = pointInCard.getY();
 		int[] position = new int[2];
 		getLocationInWindow(position);
 		yTouch = yTouch - position[1];
-		
+
 		if (yTouch < 0.33 * getHeight()) {
-//			Toast.makeText(getContext(), "OnClick Top", Toast.LENGTH_SHORT)
-//					.show();
+			// Toast.makeText(getContext(), "OnClick Top", Toast.LENGTH_SHORT)
+			// .show();
 			listener.onClickFront(this, Position.TOP);
 			return;
 		}
 		if (yTouch < 0.67 * getHeight()) {
-//			Toast.makeText(getContext(), "OnClick Middle", Toast.LENGTH_SHORT)
-//					.show();
+			// Toast.makeText(getContext(), "OnClick Middle",
+			// Toast.LENGTH_SHORT)
+			// .show();
 			listener.onClickFront(this, Position.MIDDLE);
 			return;
 		}
@@ -339,9 +353,12 @@ public class PlayCardView extends CardView {
 	}
 
 	private void handleLongClick() {
+		if (listener == null)
+			return;
 		// perform LongClickOperation
 
-		//Toast.makeText(getContext(), "Long Click", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getContext(), "Long Click",
+		// Toast.LENGTH_SHORT).show();
 	}
 
 	public PlayCardView(Context context) {
@@ -396,6 +413,8 @@ public class PlayCardView extends CardView {
 
 	public interface OnPlayCardClickListener {
 		void onClickBack(View view);
+
+		void cancelDrag();
 
 		void startDrag(PlayCardView playCardView);
 
