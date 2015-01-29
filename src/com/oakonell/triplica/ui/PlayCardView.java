@@ -300,6 +300,7 @@ public class PlayCardView extends CardView {
 				float distance = Float.MAX_VALUE;
 				for (PlayCardView each : droppableViews) {
 					if (each == PlayCardView.this) {
+						index++;
 						continue;
 					}
 

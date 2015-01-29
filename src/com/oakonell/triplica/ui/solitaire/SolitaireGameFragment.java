@@ -9,6 +9,7 @@ import java.util.Set;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import com.oakonell.triplica.ui.PlayCardView;
 import com.oakonell.triplica.ui.PlayCardView.OnPlayCardClickListener;
 
 public class SolitaireGameFragment extends Fragment {
+	private static final String LOG_TAG = "SolitaireGameFragment";
 	private static final int FLIP_CARD_DURATION_MS = 400;
 	// game model
 	private SolitaireGame game;
@@ -199,6 +201,8 @@ public class SolitaireGameFragment extends Fragment {
 						if (game.getDeck().getCards().size() == 1) {
 							views.deck_background.setVisibility(View.INVISIBLE);
 						}
+						Log.i(LOG_TAG, "Dropped deck onto pile "
+								+ theSelectIndex + "\n" + game.toString());
 					}
 
 					@Override
@@ -208,7 +212,9 @@ public class SolitaireGameFragment extends Fragment {
 
 					@Override
 					public void onClickBack(View view) {
-						if (true) throw new RuntimeException("Clicked back of invalid card...");
+						if (true)
+							throw new RuntimeException(
+									"Clicked back of invalid card...");
 						// mark the current play card back to normal
 						int stackInPlay = game.getStackInPlayIndex();
 						if (stackInPlay >= 0) {
@@ -426,6 +432,8 @@ public class SolitaireGameFragment extends Fragment {
 
 				views.cards_layout.setIndexOnTop(theSelectIndex + 2);
 				views.cards_layout.invalidate();
+				Log.i(LOG_TAG, "Dropped from pile " + i + " onto pile "
+						+ theSelectIndex + "\n" + game.toString());
 			}
 
 			@Override

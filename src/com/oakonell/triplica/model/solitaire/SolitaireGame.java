@@ -2,6 +2,7 @@ package com.oakonell.triplica.model.solitaire;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -184,5 +185,54 @@ public class SolitaireGame {
 
 	public List<Triplica> getPendingTriplicas() {
 		return pendingTriplicas;
+	}
+
+	/*
+	 * X?* (56) ?(6)(6) ??? ?(6) X?* ?(6) ?X? ?(6) X?? X(6)
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		Iterator<Entry<Shape, Integer>> goalIter = goalsRemainingByShape
+				.entrySet().iterator();
+
+		if (playDeck.isEmpty()) {
+			builder.append("   ");
+		} else {
+			if (stackInPlayIndex < 0) {
+				builder.append(getDeckCard().toString());
+			} else {
+				builder.append("===");
+			}
+		}
+
+		String deckSizeString = " (" + playDeck.getCards().size() + ")";
+		builder.append(deckSizeString);
+		outputGoal(goalIter.next(), builder);
+		builder.append("   ");
+		for (int i = 0; i < deckSizeString.length(); i++) {
+			builder.append(' ');
+		}
+		outputGoal(goalIter.next(), builder);
+
+		for (int index = 0; index < getNumPlayPiles(); index++) {
+			PlayCardPile each = playPiles.get(index);
+			builder.append(each.getTopCard().toString());
+			if (index == stackInPlayIndex) {
+				builder.append("  ");
+				builder.append(each.getNextCard().toString());
+			} else {
+				builder.append("     ");
+			}
+			outputGoal(goalIter.next(), builder);
+		}
+
+		return builder.toString();
+	}
+
+	private void outputGoal(Entry<Shape, Integer> next, StringBuilder builder) {
+		builder.append("    " + next.getKey().getDebuggable() + "("
+				+ next.getValue() + ")\n");
+
 	}
 }

@@ -27,8 +27,15 @@ public class PlayCard {
 			return shapes[0];
 		return shapes[2];
 	}
-	
+
 	public String toString() {
-		return get(Position.TOP)  + "," + get(Position.MIDDLE) + "," + get(Position.BOTTOM);
+		if (flipped) {
+			return get(Position.TOP).getDebuggable()
+					+ get(Position.MIDDLE).getDebuggable()
+					+ get(Position.BOTTOM).getDebuggable();
+		}
+		return get(Position.BOTTOM).getDebuggable()
+				+ get(Position.MIDDLE).getDebuggable()
+				+ get(Position.TOP).getDebuggable();
 	}
 }
