@@ -29,6 +29,7 @@ import com.oakonell.triplica.ui.PlayCardView;
 import com.oakonell.triplica.ui.PlayCardView.OnPlayCardClickListener;
 
 public class SolitaireGameFragment extends Fragment {
+	private static final int FLIP_CARD_DURATION_MS = 400;
 	// game model
 	private SolitaireGame game;
 
@@ -78,7 +79,7 @@ public class SolitaireGameFragment extends Fragment {
 		views.playDeckView.showBack(true);
 		views.deck.showBack(true);
 		views.deck_background.showBack(true);
-		views.playDeckView.bringToFront();
+		// views.playDeckView.bringToFront();
 		// rootView.findViewById(R.id.deck_holder).bringToFront();
 
 		int numPlayCards = game.getNumPlayPiles();
@@ -88,6 +89,81 @@ public class SolitaireGameFragment extends Fragment {
 		}
 
 		updatePlayCards();
+
+		views.deck.setOnClickPlayCardListener(new OnPlayCardClickListener() {
+			@Override
+			public void startDrag(PlayCardView playCardView) {
+			}
+
+			@Override
+			public void rotated(View view) {
+			}
+
+			@Override
+			public void onClickFront(View view, Position position) {
+			}
+
+			@Override
+			public void onClickBack(View view) {
+				// mark the current play card back to normal
+				int stackInPlay = game.getStackInPlayIndex();
+				if (stackInPlay >= 0) {
+					views.playCardViews[stackInPlay].setSelected(false);
+				}
+
+				views.cards_layout.setIndexOnTop(0);
+
+				PlayCard deckCard = game.getDeckCard();
+				if (game.getDeck().isEmpty()) {
+					views.deck_background.setVisibility(View.INVISIBLE);
+				}
+				views.playDeckView.setVisibility(View.INVISIBLE);
+				views.playDeckView.setPlayCard(deckCard);
+				views.playDeckView.showBack(false);
+
+				new FlipHorizontalToAnimation(views.deck)
+						.setFlipToView(views.playDeckView)
+						.setInterpolator(new LinearInterpolator())
+						.setDuration(FLIP_CARD_DURATION_MS)
+						// .setListener(new
+						// com.easyandroidanimations.library.AnimationListener()
+						// {
+						//
+						// @Override
+						// public void onAnimationEnd(
+						// com.easyandroidanimations.library.Animation
+						// animation) {
+						//
+						// }
+						// })
+						.animate();
+
+				TriplicaClaimAnimation animator = new TriplicaClaimAnimation(
+						getView(), views, game);
+
+				// TODO need an "animating variable" to prevent inputs
+				// while
+				// animating
+				animator.animateTriplicas(new Runnable() {
+					@Override
+					public void run() {
+						game.endTurn();
+						views.playDeckView.setDraggable(true);
+					}
+				});
+
+			}
+
+			@Override
+			public void droppedOn(PlayCardView theSelected, int theIndex) {
+			}
+
+			@Override
+			public void cancelDrag() {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 		views.playDeckView.setDroppables(views.playCardViews);
 		views.playDeckView
@@ -132,6 +208,7 @@ public class SolitaireGameFragment extends Fragment {
 
 					@Override
 					public void onClickBack(View view) {
+						if (true) throw new RuntimeException("Clicked back of invalid card...");
 						// mark the current play card back to normal
 						int stackInPlay = game.getStackInPlayIndex();
 						if (stackInPlay >= 0) {
@@ -144,13 +221,14 @@ public class SolitaireGameFragment extends Fragment {
 						if (game.getDeck().isEmpty()) {
 							views.deck_background.setVisibility(View.INVISIBLE);
 						}
+						views.playDeckView.setVisibility(View.INVISIBLE);
 						views.playDeckView.setPlayCard(deckCard);
 						views.playDeckView.showBack(false);
 
 						new FlipHorizontalToAnimation(views.deck)
 								.setFlipToView(views.playDeckView)
 								.setInterpolator(new LinearInterpolator())
-								.setDuration(700)
+								.setDuration(FLIP_CARD_DURATION_MS)
 								// .setListener(new
 								// com.easyandroidanimations.library.AnimationListener()
 								// {

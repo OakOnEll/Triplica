@@ -23,6 +23,12 @@ import com.oakonell.triplica.ui.solitaire.SolitaireGameFragment.GoalViews;
 import com.oakonell.triplica.ui.solitaire.SolitaireGameFragment.ViewHolder;
 
 public class TriplicaClaimAnimation {
+	private static final int MOVE_SHAPE_DURATION_MS = 800;
+	private static final int SHRINK_SHAPE_DURATION_MS = 750;
+	
+	private static final int GROW_SHAPES_DURATION_MS = 500;
+	private static final int GROW_REMAINING_DURATION_MS = 500;
+	
 	private ViewHolder views;
 	private View view;
 
@@ -163,7 +169,7 @@ public class TriplicaClaimAnimation {
 		ScaleAnimation scale = new ScaleAnimation(1, 2, 1, 2,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
-		scale.setDuration(500);
+		scale.setDuration(GROW_REMAINING_DURATION_MS);
 		scale.setAnimationListener(new AnimationListener() {
 			@Override
 			public void onAnimationStart(Animation animation) {
@@ -196,15 +202,15 @@ public class TriplicaClaimAnimation {
 		ScaleAnimation scale = new ScaleAnimation(1, 2, 1, 2,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
-		scale.setDuration(500);
+		scale.setDuration(GROW_SHAPES_DURATION_MS);
 		set.addAnimation(scale);
 
 		// then shrink and move to remaining number text view
 		ScaleAnimation shrink = new ScaleAnimation(1, 0.1f, 1, 0.1f,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
-		shrink.setStartOffset(500);
-		shrink.setDuration(750);
+		shrink.setStartOffset(GROW_SHAPES_DURATION_MS);
+		shrink.setDuration(SHRINK_SHAPE_DURATION_MS);
 		set.addAnimation(shrink);
 
 		int xDelta = getLeftRelativeTo(targetRemainingView, view)
@@ -219,8 +225,8 @@ public class TriplicaClaimAnimation {
 		TranslateAnimation translate = new TranslateAnimation(0, xDelta, 0,
 				yDelta);
 
-		translate.setStartOffset(500);
-		translate.setDuration(800);
+		translate.setStartOffset(GROW_SHAPES_DURATION_MS);
+		translate.setDuration(MOVE_SHAPE_DURATION_MS);
 		set.addAnimation(translate);
 
 		return set;

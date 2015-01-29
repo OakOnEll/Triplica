@@ -51,10 +51,10 @@ public final class R {
         public static final int bottom=0x7f090008;
         public static final int cards_layout=0x7f090015;
         public static final int container=0x7f090000;
-        public static final int deck=0x7f090018;
+        public static final int deck=0x7f090019;
         public static final int deck_background=0x7f090017;
         public static final int deck_holder=0x7f090016;
-        public static final int deck_new_card=0x7f090019;
+        public static final int deck_new_card=0x7f090018;
         public static final int front=0x7f090005;
         public static final int goal1_remaining=0x7f09000a;
         public static final int goal2_remaining=0x7f09000c;

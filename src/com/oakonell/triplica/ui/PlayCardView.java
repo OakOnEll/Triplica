@@ -17,6 +17,8 @@ import com.oakonell.triplica.model.Position;
 import com.oakonell.triplica.model.Shape;
 
 public class PlayCardView extends CardView {
+	private static final int DROP_CANCEL_DURATION_MS = 300;
+	private static final int DROP_INTO_PILE_DURATION_MS = 200;
 	private ImageView top;
 	private ImageView middle;
 	private ImageView bottom;
@@ -209,7 +211,7 @@ public class PlayCardView extends CardView {
 					// move the view back to where it started
 					TranslateAnimation anim = new TranslateAnimation(0,
 							originalX - getX(), 0, originalY - getY());
-					anim.setDuration(400);
+					anim.setDuration(DROP_CANCEL_DURATION_MS);
 					anim.setAnimationListener(new AnimationListener() {
 						@Override
 						public void onAnimationStart(Animation animation) {
@@ -221,6 +223,11 @@ public class PlayCardView extends CardView {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
+							Animation noFlicker = new TranslateAnimation(0.0f,
+									0.0f, 0.0f, 0.0f);
+							noFlicker.setDuration(1);
+							startAnimation(noFlicker);
+
 							setX(originalX);
 							setY(originalY);
 							// handler.postDelayed(new Runnable() {
@@ -245,7 +252,7 @@ public class PlayCardView extends CardView {
 
 				TranslateAnimation anim = new TranslateAnimation(0, end[0]
 						- start[0], 0, end[1] - start[1]);
-				anim.setDuration(600);
+				anim.setDuration(DROP_INTO_PILE_DURATION_MS);
 				anim.setAnimationListener(new AnimationListener() {
 					@Override
 					public void onAnimationStart(Animation animation) {
@@ -257,6 +264,11 @@ public class PlayCardView extends CardView {
 
 					@Override
 					public void onAnimationEnd(Animation animation) {
+						Animation noFlicker = new TranslateAnimation(0.0f,
+								0.0f, 0.0f, 0.0f);
+						noFlicker.setDuration(1);
+						startAnimation(noFlicker);
+
 						setX(originalX);
 						setY(originalY);
 						// handler.postDelayed(new Runnable() {
